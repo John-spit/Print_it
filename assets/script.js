@@ -28,24 +28,44 @@ const bannerText = document.querySelector("#banner p");
 let position = 0;
 
 // Création des fonctions sur les flèches
-
-arrowLeft.addEventListener("click", function () {
-  if (position == 0) {
-    position = numberOfSlide - 1;
-  } else {
-    position--;
-  }
-  updateSlide();
+document.querySelectorAll(".arrow").forEach(function (imgArrow) {
+  imgArrow.addEventListener("click", function (e) {
+    if (Array.from(this.classList).includes("/left/")) {
+      if (!position) {
+        position = numberOfSlide - 1;
+      } else {
+        position--;
+      }
+    } else {
+      if (position == numberOfSlide - 1) {
+        position = 0;
+      } else {
+        position++;
+      }
+    }
+    updateSlide();
+  });
 });
 
-arrowRight.addEventListener("click", function () {
-  if (position == numberOfSlide - 1) {
-    position = 0;
-  } else {
-    position++;
-  }
-  updateSlide();
-});
+// Autre façon
+
+// arrowLeft.addEventListener("click", function () {
+//   if (position == 0) {
+//     position = numberOfSlide - 1;
+//   } else {
+//     position--;
+//   }
+//   updateSlide();
+// });
+
+// arrowRight.addEventListener("click", function () {
+//   if (position == numberOfSlide - 1) {
+//     position = 0;
+//   } else {
+//     position++;
+//   }
+//   updateSlide();
+// });
 
 // Création d'une fonction pour créer les "dots" selon le nombre de photos
 
